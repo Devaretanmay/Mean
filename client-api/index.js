@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ mongoose.connect(mongoURI)
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use('/api', userRoutes);
 app.get('/', (req, res) => {
   res.send('Welcome to the MERN application!');
 });
