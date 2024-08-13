@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/userRoute.js'; // Change the import statement to match the new file name
+import authRoutes from './routes/authRoute.js'; // Import auth routes
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use('/api', userRoutes);
+app.use('/auth', authRoutes); // Use auth routes under '/auth' prefix
 app.get('/', (req, res) => {
   res.send('Welcome to the MERN application!');
 });
