@@ -8,6 +8,7 @@ import compression from 'compression';
 import Joi from 'joi';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import cors from 'cors'; // Import CORS middleware
 
 dotenv.config();
 
@@ -28,6 +29,9 @@ app.use(express.json()); // Add express.json() middleware to parse JSON bodies
 app.use(helmet());
 app.use(compression());
 app.use(morgan('tiny'));
+
+// Enable CORS for all routes
+app.use(cors());
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
