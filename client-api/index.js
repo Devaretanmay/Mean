@@ -24,6 +24,7 @@ mongoose.connect(mongoURI)
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json()); // Add express.json() middleware to parse JSON bodies
 app.use(helmet());
 app.use(compression());
 app.use(morgan('tiny'));
@@ -49,8 +50,8 @@ app.post('/signup', async (req, res, next) => {
     }
 });
 
-app.use('/api', userRoutes);
-app.use('/auth', authRoutes); // Use auth routes under '/auth' prefix
+app.use('/api/auth', userRoutes); // Nest user routes under '/api/auth'
+app.use('/api/auth', authRoutes); // Use auth routes under '/api/auth' prefix
 app.get('/', (req, res) => {
   res.send('Welcome to the MERN application!');
 });

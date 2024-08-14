@@ -10,7 +10,7 @@ export const registerUser = async (req, res) => {
         await newUser.save();
         res.status(201).send({ message: 'User registered successfully', user: newUser });
     } catch (error) {
-        res.status(500).send({ message: 'Failed to register user', error });
+        res.status(500).send({ message: 'Failed to register user', error: error.message || error });
     }
 };
 
